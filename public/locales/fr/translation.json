@@ -1,0 +1,5 @@
+{
+    "Welcome to React": "Bienvenue à React et react-i18next",
+    "counter_one": "Die Sprache wurde erst ein mal gewechselt",
+    "counter_other": "Die Sprache wurde {{count}} mal gewechselt"
+}
