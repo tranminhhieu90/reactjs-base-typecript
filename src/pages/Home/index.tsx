@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '~/app/redux/hooks';
+import { getUserInfoSelector } from '~/app/redux/selector/userSelector';
 const lngs: any = {
     en: { nativeName: 'English' },
     fr: { nativeName: 'Deutsch' },
@@ -8,6 +10,8 @@ const lngs: any = {
 function Home() {
     const { t, i18n } = useTranslation();
     const [count, setCounter] = useState(0);
+    const user = useAppSelector(getUserInfoSelector);
+    console.log('user', user);
     return (
         <>
             <div>
