@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const Http = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL: 'http://localhost:8000',
     timeout: 30000,
     timeoutErrorMessage: 'Request Timeout',
     headers: { 'X-Custom-Header': 'foobar' },

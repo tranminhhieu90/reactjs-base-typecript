@@ -7,3 +7,8 @@ export const login = async (email: string, password: string) => {
         password,
     });
 };
+
+export const getAllTasks = async () => {
+    const url = '/tasks';
+    return Http.get(url);
+};

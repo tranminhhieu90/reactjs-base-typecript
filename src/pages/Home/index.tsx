@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '~/app/redux/hooks';
 import { getUserInfoSelector } from '~/app/redux/selector/userSelector';
+import { getAllTasks } from '~/services/auth';
 const lngs: any = {
     en: { nativeName: 'English' },
     fr: { nativeName: 'Deutsch' },
@@ -12,6 +13,16 @@ function Home() {
     const [count, setCounter] = useState(0);
     const user = useAppSelector(getUserInfoSelector);
     console.log('user', user);
+    useEffect(() => {
+        getTasks();
+    }, []);
+
+    const getTasks = async () => {
+        try {
+            const result = await getAllTasks();
+            console.log('result', result);
+        } catch (error) {}
+    };
     return (
         <>
             <div>
