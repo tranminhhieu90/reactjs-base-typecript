@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from '~/routes';
 import DefaultLayout from './components/Layout';
+import Login from './pages/Login';
 
 function App() {
     const isLogin = false;
@@ -39,6 +40,7 @@ function App() {
                             />
                         );
                     })}
+                    <Route path={'/login'} element={<Login />} />
                 </Routes>
             </div>
         </Router>

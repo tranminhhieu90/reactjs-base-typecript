@@ -1,9 +1,9 @@
 import { Http } from '~/app/http';
 
-export const login = async (email: string, password: string) => {
-    const url = '/users/login';
+export const login = async (username: string, password: string) => {
+    const url = '/auth/signin';
     return Http.post(url, {
-        email,
+        username,
         password,
     });
 };
