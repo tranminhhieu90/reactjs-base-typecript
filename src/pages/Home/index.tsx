@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '~/app/redux/hooks';
 import { getUserInfoSelector } from '~/app/redux/selector/userSelector';
+import { useFetch } from '~/hooks/useFetch';
 import { getAllTasks } from '~/services/auth';
 const lngs: any = {
     en: { nativeName: 'English' },
@@ -10,19 +11,9 @@ const lngs: any = {
 
 function Home() {
     const { t, i18n } = useTranslation();
-    const [count, setCounter] = useState(0);
     const user = useAppSelector(getUserInfoSelector);
-    console.log('user', user);
-    useEffect(() => {
-        getTasks();
-    }, []);
-
-    const getTasks = async () => {
-        try {
-            const result = await getAllTasks();
-            console.log('result', result);
-        } catch (error) {}
-    };
+    const { data: tasks, isLoading, error } = useFetch(getAllTasks);
+    console.log('tasks', tasks);
     return (
         <>
             <div>
@@ -33,7 +24,6 @@ function Home() {
                         type="submit"
                         onClick={() => {
                             i18n.changeLanguage(lng);
-                            setCounter(count + 1);
                         }}
                     >
                         {lngs[lng].nativeName}
@@ -41,9 +31,7 @@ function Home() {
                 ))}
             </div>
             <h2>{t('Welcome to React')}</h2>
-            <p>
-                <i>{t('counter', { count })}</i>
-            </p>
+            {isLoading ? <p>Loading...</p> : tasks.map((task: any) => <p key={task.id}>{task.title}</p>)}
         </>
     );
 }
